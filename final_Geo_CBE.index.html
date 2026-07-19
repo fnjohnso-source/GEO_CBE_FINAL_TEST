@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry CBE Final Test — TEKS Units 1–7 · Study Guide + Practice Exam</title>
+<meta name="description" content="Interactive study guide and an advanced 55-question proctored practice exam for Geometry CBE Test 1, aligned to Texas TEKS units 1–7, with four highlighted focus areas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --surface:#EEF0F3; --panel:#FFFFFF; --ink:#0E1726; --slate:#5A6675; --line:#DCE0E6;
+  --indigo:#2F49D8; --indigo-soft:#EAECFB;
+  --amber:#B4770C; --amber-soft:#FBF1DD; --amber-line:#EBCF94;
+  --green:#177A48; --green-soft:#E4F3EA; --crimson:#BC2D2D; --crimson-soft:#FAEAEA;
+  --bar:#101A2B; --bar-line:#26344A;
+  --display:"Space Grotesk",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --r:5px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--surface);line-height:1.55;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2.5px solid var(--indigo);outline-offset:2px;border-radius:3px}
+button{font-family:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+/* ---------- app header + tabs ---------- */
+.apphead{background:var(--panel);border-bottom:1px solid var(--line)}
+.apphead[hidden]{display:none}
+.apphead .row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.brand{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.01em}
+.brand em{font-style:normal;color:var(--indigo)}
+.teks{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.apptabs{display:flex;gap:0}
+.apptab{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;background:none;
+  border:none;border-bottom:2px solid transparent;color:var(--slate);padding:12px 18px;cursor:pointer}
+.apptab:hover{color:var(--ink)}
+.apptab[aria-selected="true"]{color:var(--indigo);border-bottom-color:var(--indigo)}
+
+.stage{max-width:960px;margin:0 auto;padding:24px 20px 90px}
+.stage.exam-pad{padding-top:78px}
+.note{font-size:14px;color:var(--slate);margin-bottom:18px;max-width:66ch}
+
+/* ---------- focus callout ---------- */
+.focus-callout{background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:8px;padding:16px 18px;margin-bottom:22px}
+.focus-callout h3{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.focus-callout .chips{display:flex;flex-wrap:wrap;gap:8px}
+.fchip{font-family:var(--mono);font-size:12px;padding:7px 12px;background:var(--panel);border:1px solid var(--amber-line);
+  border-radius:100px;cursor:pointer;color:var(--amber);font-weight:600}
+.fchip:hover{background:#fff;border-color:var(--amber)}
+.focus-callout p{font-size:13px;color:var(--slate);margin-top:10px}
+
+/* ---------- study guide units ---------- */
+.unit{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin-bottom:12px;overflow:hidden}
+.unit.focus{border-left:3px solid var(--amber)}
+.unit-head{width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;background:none;border:none;cursor:pointer;text-align:left}
+.unit-head:hover{background:var(--indigo-soft)}
+.unit.focus .unit-head:hover{background:var(--amber-soft)}
+.unum{font-family:var(--mono);font-size:11px;color:var(--slate);border:1px solid var(--line);border-radius:50%;
+  width:28px;height:28px;display:grid;place-items:center;flex:none}
+.unit.focus .unum{border-color:var(--amber);color:var(--amber)}
+.uname{font-family:var(--display);font-weight:500;font-size:16.5px;flex:1;letter-spacing:-.01em}
+.focus-badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--amber);
+  color:#fff;padding:3px 8px;border-radius:100px;flex:none}
+.chev{flex:none;color:var(--slate);transition:transform .2s}
+.unit[data-open="1"] .chev{transform:rotate(90deg)}
+.unit-body{padding:2px 18px 20px;border-top:1px solid var(--line)}
+.unit-body[hidden]{display:none}
+.kidea{background:var(--indigo-soft);border-left:2px solid var(--indigo);padding:11px 13px;margin:16px 0;font-size:14px}
+.unit.focus .kidea{background:var(--amber-soft);border-left-color:var(--amber)}
+.unit-body h4{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);margin:18px 0 8px}
+.unit-body p{font-size:14px;margin-bottom:8px}
+.fx{font-family:var(--mono);font-size:13px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:9px 11px;margin-bottom:6px;display:block;overflow-x:auto;white-space:nowrap}
+.unit-body table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:6px}
+.unit-body th,.unit-body td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.unit-body th{background:var(--surface);font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);font-weight:400}
+.unit-body td.m{font-family:var(--mono)}
+.box{border-radius:var(--r);padding:11px 13px;font-size:13.5px;margin-top:10px}
+.box .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:5px;font-weight:600}
+.ex{background:var(--green-soft);border:1px solid #BFE0CD}.ex .lbl{color:var(--green)}
+.wo{background:var(--crimson-soft);border:1px solid #EFC9C9}.wo .lbl{color:var(--crimson)}
+
+/* ---------- check-in ---------- */
+.checkin{max-width:660px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+.checkin h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,4.6vw,38px);line-height:1.08;letter-spacing:-.02em;margin:10px 0 12px}
+.checkin h1 em{font-style:normal;color:var(--indigo)}
+.lede{color:var(--slate);font-size:15px;margin-bottom:22px;max-width:56ch}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel);margin-bottom:20px}
+.fact{padding:15px 14px;border-right:1px solid var(--line)}
+.fact:last-child{border-right:none}
+.fact b{font-family:var(--display);font-size:23px;display:block;line-height:1}
+.fact span{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate)}
+.rules{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:18px}
+.rules h3{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:12px}
+.rules ul{list-style:none;display:grid;gap:9px}
+.rules li{font-size:14px;padding-left:24px;position:relative}
+.rules li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border:1.5px solid var(--indigo);border-radius:2px}
+.disclaim{font-size:12.5px;color:var(--slate);background:var(--indigo-soft);border-radius:var(--r);padding:12px 14px;margin-bottom:20px}
+.ack{display:flex;gap:11px;align-items:flex-start;margin-bottom:18px;cursor:pointer;font-size:14px}
+.ack input{width:19px;height:19px;margin-top:2px;accent-color:var(--indigo);flex:none;cursor:pointer}
+.begin{font-family:var(--mono);font-size:14px;letter-spacing:.03em;background:var(--ink);color:#fff;border:none;padding:14px 28px;border-radius:var(--r);cursor:pointer;width:100%}
+.begin:hover:not(:disabled){background:var(--indigo)}
+.begin:disabled{opacity:.4;cursor:not-allowed}
+.resume{margin-top:12px;text-align:center}
+.resume button{background:none;border:none;font-family:var(--mono);font-size:12px;color:var(--indigo);text-decoration:underline;cursor:pointer}
+
+/* ---------- proctor bar ---------- */
+.proctor{position:fixed;top:0;left:0;right:0;height:58px;background:var(--bar);color:#fff;z-index:60;display:flex;align-items:center;gap:16px;padding:0 18px;border-bottom:1px solid var(--bar-line)}
+.proctor[hidden]{display:none}
+.p-title{font-family:var(--display);font-weight:500;font-size:15px;white-space:nowrap}
+.p-pill{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;background:var(--bar-line);color:#c3cde0;padding:3px 7px;border-radius:100px;text-transform:uppercase}
+.p-spacer{flex:1}
+.timer{font-family:var(--mono);font-weight:600;font-size:22px;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.timer.warn{color:#FFB454}.timer.crit{color:#FF6B6B;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.5}}
+.p-prog{font-family:var(--mono);font-size:12px;color:#9fb0c9;white-space:nowrap}
+.integrity{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;color:#9fb0c9}
+.dot{width:9px;height:9px;border-radius:50%;background:#2fbf71;box-shadow:0 0 0 3px rgba(47,191,113,.2)}
+.dot.flag{background:#FFB454;box-shadow:0 0 0 3px rgba(255,180,84,.25)}
+.p-btn{font-family:var(--mono);font-size:12px;background:#fff;color:var(--ink);border:none;padding:9px 14px;border-radius:var(--r);cursor:pointer;white-space:nowrap}
+.p-btn:hover{background:var(--indigo);color:#fff}
+
+/* ---------- exam ---------- */
+.exam-grid{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:20px;align-items:start}
+.qcard{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:24px 26px;min-height:340px;display:flex;flex-direction:column}
+.qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;border-bottom:1px solid var(--line);padding-bottom:14px;gap:10px}
+.qhead .n{font-family:var(--mono);font-size:12px;color:var(--slate)}
+.qhead .u{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);background:var(--surface);padding:3px 8px;border-radius:100px}
+.qhead .u.focus{color:var(--amber);background:var(--amber-soft)}
+.flagbtn{font-family:var(--mono);font-size:11px;background:none;border:1px solid var(--line);color:var(--slate);padding:7px 12px;border-radius:100px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.flagbtn:hover{border-color:var(--amber);color:var(--amber)}
+.flagbtn.on{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.flagbtn svg{width:12px;height:12px}
+.qtext{font-size:16.5px;line-height:1.5;margin-bottom:22px}
+.qtext .fx{font-family:var(--mono);font-size:15px;background:var(--surface);padding:2px 7px;border-radius:3px;display:inline-block;margin:2px 0;white-space:normal;border:none}
+.opts{display:grid;gap:10px;margin-top:auto}
+.opt{display:flex;gap:13px;align-items:flex-start;text-align:left;width:100%;padding:13px 15px;border:1.5px solid var(--line);background:var(--panel);border-radius:var(--r);cursor:pointer;font-family:var(--body);font-size:15px;color:var(--ink)}
+.opt:hover{border-color:var(--indigo);background:var(--indigo-soft)}
+.opt.sel{border-color:var(--indigo);background:var(--indigo-soft)}
+.opt .k{font-family:var(--mono);font-size:13px;color:var(--slate);border:1.5px solid var(--line);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+.opt.sel .k{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.entry{margin-top:auto}
+.entry label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:8px}
+.entry input{font-family:var(--mono);font-size:17px;padding:13px 15px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--panel);color:var(--ink);width:100%;max-width:320px}
+.entry input:focus{border-color:var(--indigo)}
+.entry .hint{font-size:12.5px;color:var(--slate);margin-top:8px}
+.qnav-btns{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+.navb{font-family:var(--mono);font-size:13px;padding:12px 22px;border-radius:var(--r);border:1px solid var(--ink);background:var(--panel);color:var(--ink);cursor:pointer}
+.navb:hover:not(:disabled){background:var(--ink);color:#fff}
+.navb.primary{background:var(--ink);color:#fff}
+.navb.primary:hover{background:var(--indigo);border-color:var(--indigo)}
+.navb:disabled{opacity:.35;cursor:not-allowed}
+.navigator{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;position:sticky;top:76px}
+.navigator h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.gcell{aspect-ratio:1;border:1px solid var(--line);border-radius:4px;background:var(--panel);font-family:var(--mono);font-size:11px;color:var(--slate);cursor:pointer;position:relative;display:grid;place-items:center}
+.gcell:hover{border-color:var(--indigo)}
+.gcell.answered{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.gcell.current{outline:2.5px solid var(--ink);outline-offset:1px}
+.gcell.flagged::after{content:"";position:absolute;top:-1px;right:-1px;border-width:0 8px 8px 0;border-style:solid;border-color:transparent var(--amber) transparent transparent;border-radius:0 4px 0 0}
+.legend{margin-top:14px;display:grid;gap:6px;font-family:var(--mono);font-size:10.5px;color:var(--slate)}
+.legend div{display:flex;align-items:center;gap:8px}
+.sw{width:13px;height:13px;border-radius:3px;border:1px solid var(--line);flex:none}
+.sw.a{background:var(--indigo);border-color:var(--indigo)}
+.sw.f{position:relative}.sw.f::after{content:"";position:absolute;top:-1px;right:-1px;border-width:0 7px 7px 0;border-style:solid;border-color:transparent var(--amber) transparent transparent}
+.navtoggle{display:none}
+
+/* ---------- overlays ---------- */
+.overlay{position:fixed;inset:0;background:rgba(14,23,38,.55);z-index:80;display:grid;place-items:center;padding:20px}
+.overlay[hidden]{display:none}
+.modal{background:var(--panel);border-radius:10px;max-width:440px;width:100%;padding:26px;border:1px solid var(--line)}
+.modal.warn{border-top:4px solid var(--amber)}
+.modal h3{font-family:var(--display);font-size:20px;margin-bottom:10px}
+.modal p{font-size:14px;color:var(--slate);margin-bottom:18px}
+.modal .row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.mbtn{font-family:var(--mono);font-size:13px;padding:11px 18px;border-radius:var(--r);border:1px solid var(--ink);background:var(--panel);color:var(--ink);cursor:pointer}
+.mbtn:hover{background:var(--surface)}
+.mbtn.solid{background:var(--ink);color:#fff}.mbtn.solid:hover{background:var(--indigo);border-color:var(--indigo)}
+.mbtn.danger{background:var(--crimson);color:#fff;border-color:var(--crimson)}
+
+/* ---------- review before submit ---------- */
+.rev h2{font-family:var(--display);font-size:24px;margin-bottom:6px}
+.rev .sub{color:var(--slate);font-size:14px;margin-bottom:22px}
+.tallies{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.tally{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}
+.tally b{font-family:var(--display);font-size:28px;display:block;line-height:1}
+.tally span{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate)}
+.tally.warn b{color:var(--amber)}
+.jumplist{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px;margin-bottom:22px}
+.jl-h{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--slate);padding:12px 14px 8px}
+.jchips{display:flex;flex-wrap:wrap;gap:7px;padding:0 14px 14px}
+.jchip{font-family:var(--mono);font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:100px;background:var(--panel);cursor:pointer;color:var(--ink)}
+.jchip:hover{border-color:var(--indigo);color:var(--indigo)}
+.jchip.flag{border-color:var(--amber);color:var(--amber)}
+.none{font-size:13px;color:var(--slate);padding:0 14px 14px}
+.rev-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---------- results ---------- */
+.scorehero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px 28px;margin-bottom:20px}
+.ring{position:relative;width:150px;height:150px}
+.ring svg{transform:rotate(-90deg)}
+.ring .pct{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ring .pct b{font-family:var(--display);font-size:34px;line-height:1}
+.ring .pct span{font-family:var(--mono);font-size:10px;color:var(--slate)}
+.verdict-big{font-family:var(--display);font-weight:700;font-size:29px;margin-bottom:6px}
+.verdict-big.pass{color:var(--green)}.verdict-big.fail{color:var(--crimson)}
+.verdict-sub{font-size:14.5px;color:var(--slate);margin-bottom:16px;max-width:48ch}
+.meta{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--slate);border-top:1px solid var(--line);padding-top:14px}
+.meta b{color:var(--ink);font-size:16px;display:block}
+.breakdown{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:20px}
+.breakdown h3{font-family:var(--display);font-size:18px;margin-bottom:4px}
+.breakdown .bd-sub{font-size:13px;color:var(--slate);margin-bottom:18px}
+.bd-row{display:grid;grid-template-columns:210px 1fr 48px;gap:14px;align-items:center;margin-bottom:11px}
+.bd-row .name{font-size:13.5px;display:flex;align-items:center;gap:7px}
+.bd-row .name .fdot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex:none}
+.bd-track{height:9px;background:var(--surface);border-radius:100px;overflow:hidden}
+.bd-fill{height:100%;border-radius:100px;background:var(--indigo)}
+.bd-fill.weak{background:var(--amber)}.bd-fill.strong{background:var(--green)}
+.bd-row .frac{font-family:var(--mono);font-size:12px;color:var(--slate);text-align:right}
+.res-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.review-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.review-head h3{font-family:var(--display);font-size:20px}
+.rfilter{display:flex;gap:7px;flex-wrap:wrap}
+.rchip{font-family:var(--mono);font-size:11px;padding:6px 12px;border:1px solid var(--line);border-radius:100px;background:var(--panel);cursor:pointer;color:var(--slate)}
+.rchip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ritem{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:12px}
+.ritem.correct{border-left:3px solid var(--green)}
+.ritem.incorrect{border-left:3px solid var(--crimson)}
+.ritem.blank{border-left:3px solid var(--slate)}
+.ritem .rtop{display:flex;justify-content:space-between;gap:12px;margin-bottom:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate)}
+.ritem .verdict-tag{font-weight:600}
+.ritem.correct .verdict-tag{color:var(--green)}.ritem.incorrect .verdict-tag{color:var(--crimson)}.ritem.blank .verdict-tag{color:var(--slate)}
+.ritem .rq{font-size:15px;margin-bottom:12px}
+.ritem .rq .fx{font-family:var(--mono);font-size:13.5px;background:var(--surface);padding:1px 6px;border-radius:3px;display:inline;white-space:normal;border:none}
+.ropts{display:grid;gap:6px;margin-bottom:10px}
+.ropt{font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:var(--r);display:flex;gap:9px}
+.ropt .k{font-family:var(--mono);font-size:12px;color:var(--slate);flex:none}
+.ropt.right{background:var(--green-soft);border-color:#bfe0cd}
+.ropt.chosen-wrong{background:var(--crimson-soft);border-color:#efc9c9}
+.ropt .tick{margin-left:auto;font-family:var(--mono);font-size:11px}
+.ropt.right .tick{color:var(--green)}.ropt.chosen-wrong .tick{color:var(--crimson)}
+.rnum{font-size:14px;margin-bottom:10px}
+.rnum .yours{font-family:var(--mono)}.rnum .ans{font-family:var(--mono);color:var(--green);font-weight:600}
+.rexp{background:var(--surface);border-radius:var(--r);padding:11px 13px;font-size:13.5px}
+.rexp .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:4px}
+.footnote{font-family:var(--mono);font-size:11px;color:var(--slate);text-align:center;margin-top:30px}
+
+@media(max-width:820px){
+  .exam-grid{grid-template-columns:1fr}
+  .navigator{position:static;order:-1;padding:0;border:none;background:none}
+  .navtoggle{display:flex;align-items:center;gap:8px;width:100%;justify-content:space-between;font-family:var(--mono);font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:11px 14px;cursor:pointer;color:var(--ink)}
+  .navigator .grid,.navigator .legend,.navigator h4{display:none}
+  .navigator.open{padding:16px;border:1px solid var(--line);background:var(--panel);border-radius:8px}
+  .navigator.open .grid,.navigator.open .legend{display:grid}.navigator.open h4{display:block}
+  .grid{grid-template-columns:repeat(8,1fr)}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .fact:nth-child(1),.fact:nth-child(2){border-bottom:1px solid var(--line)}.fact:nth-child(2){border-right:none}
+  .scorehero{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .bd-row{grid-template-columns:130px 1fr 40px}
+}
+@media(max-width:520px){.proctor{gap:10px;padding:0 12px}.p-title{font-size:13px}.p-prog,.integrity span{display:none}.grid{grid-template-columns:repeat(6,1fr)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="proctor" id="proctor" hidden>
+  <span class="p-title">Geometry CBE · Final Test</span>
+  <span class="p-pill">Final · Proctored</span>
+  <span class="p-spacer"></span>
+  <span class="timer" id="timer">90:00</span>
+  <span class="p-spacer"></span>
+  <span class="p-prog" id="prog">0 answered</span>
+  <span class="integrity" title="Leaving the exam window is recorded"><span class="dot" id="idot"></span><span id="itxt">Focused</span></span>
+  <button class="p-btn" id="toReview">Review &amp; submit</button>
+</div>
+
+<header class="apphead" id="apphead">
+  <div class="wrap">
+    <div class="row">
+      <span class="brand">Geometry CBE <em>Final Test</em></span>
+      <span class="teks">Texas TEKS · Units 1–7 · Final</span>
+    </div>
+    <div class="apptabs" role="tablist">
+      <button class="apptab" role="tab" aria-selected="true" data-mode="guide">Study Guide</button>
+      <button class="apptab" role="tab" aria-selected="false" data-mode="test">Final Test</button>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+<div class="overlay" id="overlay" hidden><div id="overlay-inner"></div></div>
+
+<script>
+/* ==================== UNITS (study guide) ==================== */
+const FOCUS = [0,2,3];
+const UNITS = [
+ {name:"Foundations &amp; Constructions",
+  key:"Every relationship here becomes an equation. Set it up from the figure, solve, then reread what was actually asked — often a segment, an angle, or a missing endpoint rather than x.",
+  html:`
+    <h4>The four setups you must know</h4>
+    <span class="fx">Segment Addition: AB + BC = AC   (B between A and C)</span>
+    <span class="fx">Angle Addition: m&ang;ABD + m&ang;DBC = m&ang;ABC</span>
+    <span class="fx">Bisector: the two halves are equal &rarr; set the expressions equal</span>
+    <span class="fx">distance = &radic;((x&#8322;&minus;x&#8321;)&sup2; + (y&#8322;&minus;y&#8321;)&sup2;)</span>
+    <h4>Midpoint — both directions</h4>
+    <p>Forward: M = ((x&#8321;+x&#8322;)/2, (y&#8321;+y&#8322;)/2). Backward, given one endpoint A and the midpoint M, <b>double the midpoint and subtract</b>:</p>
+    <span class="fx">B = (2·M&#8339; &minus; A&#8339;,  2·M&#8342; &minus; A&#8342;)</span>
+    <h4>Partitioning a segment</h4>
+    <p>&ldquo;Ratio m:n&rdquo; means travel <b>m/(m+n)</b> of the way. &ldquo;Two-fifths of the way&rdquo; already gives you the fraction — don't convert it again.</p>
+    <span class="fx">P = (x&#8321; + f(x&#8322;&minus;x&#8321;),  y&#8321; + f(y&#8322;&minus;y&#8321;))   where f is the fraction</span>
+    <h4>Constructions and why they work</h4>
+    <p><b>Perpendicular bisector:</b> equal arcs from both endpoints meet at points equidistant from each end — and that locus <i>is</i> the perpendicular bisector.<br>
+       <b>Copying an angle:</b> an arc across both rays, then matching that arc's chord width on the copy, reproduces the opening exactly.<br>
+       <b>Perpendicular from a point to a line:</b> the segment you construct is the <b>shortest distance</b> from the point to the line.</p>
+    <div class="box ex"><span class="lbl">Worked example</span>
+      M(1, &minus;3) is the midpoint of AB and A is (&minus;5, 2). Find B.<br>
+      x = 2(1) &minus; (&minus;5) = 7 and y = 2(&minus;3) &minus; 2 = &minus;8 &rarr; <b>B(7, &minus;8)</b>.</div>
+    <div class="box wo"><span class="lbl">Watch out</span>
+      Solving for x is usually <b>not</b> the answer — check whether the question wants a length or an angle. When a bisector is given as a whole angle and one half, remember the half equals <b>&frac12;</b> the whole, not the whole.</div>`},
+
+ {name:"Logic &amp; Proofs",
+  key:"Rearrange conditionals, name the property behind every algebraic step, chain statements with the Laws of Detachment and Syllogism, and know how an indirect proof opens.",
+  html:`
+    <table><tr><th>Form</th><th>Build it</th><th>Equivalent to</th></tr>
+      <tr><td>Converse</td><td class="m">if q then p</td><td>the inverse</td></tr>
+      <tr><td>Inverse</td><td class="m">if not p, then not q</td><td>the converse</td></tr>
+      <tr><td>Contrapositive</td><td class="m">if not q, then not p</td><td><b>the original</b></td></tr></table>
+    <p><b>Law of Detachment:</b> given &ldquo;if p then q&rdquo; and p, conclude q. <b>Law of Syllogism:</b> given p&rarr;q and q&rarr;r, conclude p&rarr;r.</p>
+    <p>Algebraic proofs cite the <b>Distributive Property</b> and the Addition / Subtraction / Multiplication / Division <b>Properties of Equality</b>, plus Substitution, Reflexive, Symmetric, and Transitive.</p>
+    <p><b>Indirect proof:</b> assume the <b>opposite</b> of what you want to prove, reason to a contradiction, then conclude the original.</p>
+    <div class="box ex"><span class="lbl">Worked example</span>
+      Going from 2(x + 3) = 14 to 2x + 6 = 14 is the <b>Distributive Property</b> — nothing was done to both sides, the left side was only rewritten.</div>
+    <div class="box wo"><span class="lbl">Watch out</span>
+      Only the contrapositive always matches the original's truth value. One counterexample disproves a statement.</div>`},
+
+ {name:"Parallel Lines &amp; Transversals",
+  key:"Decide first whether the pair is congruent or supplementary — that choice determines whether you set expressions equal or make them sum to 180. Then slopes handle the coordinate half.",
+  html:`
+    <table><tr><th>Angle pair (parallel lines)</th><th>Relationship</th><th>Equation to write</th></tr>
+      <tr><td>Corresponding</td><td>congruent</td><td class="m">set equal</td></tr>
+      <tr><td>Alternate interior</td><td>congruent</td><td class="m">set equal</td></tr>
+      <tr><td>Alternate exterior</td><td>congruent</td><td class="m">set equal</td></tr>
+      <tr><td>Same-side interior</td><td><b>supplementary</b></td><td class="m">sum = 180</td></tr>
+      <tr><td>Same-side exterior</td><td><b>supplementary</b></td><td class="m">sum = 180</td></tr></table>
+    <p>Congruent pairs are the ones whose positions <b>alternate</b> or <b>correspond</b>. Same-side pairs sit on the same side of the transversal, and those are the supplementary ones.</p>
+    <h4>Converses prove lines parallel</h4>
+    <p>Each theorem runs backwards: if alternate interior angles are congruent (or same-side interior angles are supplementary), <b>then</b> the lines are parallel. Starting from the angles and concluding parallel is always the <b>converse</b>.</p>
+    <h4>Slopes</h4>
+    <span class="fx">parallel: equal slopes   ·   perpendicular: slopes multiply to &minus;1</span>
+    <p>Put every line in <b>y = mx + b</b> before comparing. To write a line through a given point:</p>
+    <span class="fx">1) find the slope   2) substitute the point to solve for b   3) write y = mx + b</span>
+    <div class="box ex"><span class="lbl">Worked example</span>
+      Line through (&minus;3, 4) perpendicular to y = &#8531;x &minus; 2. Perpendicular slope = <b>&minus;3</b>.<br>
+      4 = &minus;3(&minus;3) + b &rarr; 4 = 9 + b &rarr; b = &minus;5, so <b>y = &minus;3x &minus; 5</b>.</div>
+    <div class="box wo"><span class="lbl">Watch out</span>
+      Same-side pairs are <b>supplementary, not congruent</b> — setting them equal is the most common error in this unit. The perpendicular slope to 2/5 is <b>&minus;5/2</b>: flip <i>and</i> negate, not just negate.</div>`},
+
+ {name:"Transformations",
+  key:"Apply coordinate rules in order for a composition, use the center formula when a dilation is not about the origin, and be able to run the process backwards to name a transformation from its coordinates.",
+  html:`
+    <table><tr><th>Transformation</th><th>Rule</th></tr>
+      <tr><td>Translate by (a, b)</td><td class="m">(x, y) &rarr; (x+a, y+b)</td></tr>
+      <tr><td>Reflect over x-axis</td><td class="m">(x, y) &rarr; (x, &minus;y)</td></tr>
+      <tr><td>Reflect over y-axis</td><td class="m">(x, y) &rarr; (&minus;x, y)</td></tr>
+      <tr><td>Reflect over y = x</td><td class="m">(x, y) &rarr; (y, x)</td></tr>
+      <tr><td>Rotate 90&deg; CCW</td><td class="m">(x, y) &rarr; (&minus;y, x)</td></tr>
+      <tr><td>Rotate 180&deg;</td><td class="m">(x, y) &rarr; (&minus;x, &minus;y)</td></tr>
+      <tr><td>Rotate 270&deg; CCW (= 90&deg; CW)</td><td class="m">(x, y) &rarr; (y, &minus;x)</td></tr>
+      <tr><td>Dilate by k (origin)</td><td class="m">(x, y) &rarr; (kx, ky)</td></tr></table>
+    <h4>Compositions</h4>
+    <p>Apply the transformations <b>in the order given</b>, feeding each output into the next. Order matters — swapping the steps usually lands somewhere else. Some compositions collapse into one transformation:</p>
+    <table><tr><th>Composition</th><th>Equals</th></tr>
+      <tr><td>reflect over x-axis, then y-axis</td><td class="m">rotation 180&deg;</td></tr>
+      <tr><td>rotate 90&deg; CW, then reflect over x-axis</td><td class="m">reflection over y = x</td></tr>
+      <tr><td>rotate 180&deg;, then 180&deg; again</td><td class="m">the identity (back to start)</td></tr></table>
+    <h4>Dilation about any center</h4>
+    <span class="fx">P&prime; = C + k(P &minus; C)</span>
+    <p>Work each coordinate separately: x&prime; = C&#8339; + k(P&#8339; &minus; C&#8339;). A <b>negative</b> k puts the image on the opposite side of the center.</p>
+    <h4>Naming a transformation from coordinates</h4>
+    <p>Compare a point to its image and test the rules. If the coordinates <b>swapped</b>, suspect y = x. If both were <b>multiplied</b> by the same number, it is a dilation — divide to find k. Check a <b>second</b> point before committing.</p>
+    <p>Rigid motions (translation, reflection, rotation) give a <b>congruent</b> image; any dilation with k &ne; &plusmn;1 gives a <b>similar</b> one.</p>
+    <div class="box ex"><span class="lbl">Worked example</span>
+      Dilate B(5, &minus;2) by k = 2 about C(1, 3):<br>
+      x&prime; = 1 + 2(5 &minus; 1) = 9,  y&prime; = 3 + 2(&minus;2 &minus; 3) = &minus;7 &rarr; <b>(9, &minus;7)</b>.</div>
+    <div class="box wo"><span class="lbl">Watch out</span>
+      Don't use the origin rule when the center is another point. 270&deg; counterclockwise and 90&deg; clockwise are the <b>same</b> rule, (x, y) &rarr; (y, &minus;x).</div>`},
+
+ {name:"Triangles &amp; Congruence",
+  key:"Angle relationships turn into equations, the triangle inequality bounds a missing side, and each congruence criterion demands a specific piece — especially the included part.",
+  html:`
+    <span class="fx">Angle Sum: interior angles total 180&deg;</span>
+    <span class="fx">Exterior Angle = sum of the two remote interior angles</span>
+    <span class="fx">Third side: |a &minus; b| &lt; x &lt; a + b</span>
+    <p>Valid criteria: <b>SSS, SAS, ASA, AAS, HL</b> (HL for right triangles only). <b>Not valid: SSA, AAA.</b> For SAS the angle must be <b>included</b>. Use <b>CPCTC</b> only after congruence is proven.</p>
+    <p><b>Isosceles:</b> base angles congruent. <b>Midsegment:</b> parallel to the third side and <b>half</b> its length — so doubling a midsegment gives the third side.</p>
+    <div class="box ex"><span class="lbl">Worked example</span>
+      Base angles (3x + 5)&deg; each and vertex (4x &minus; 10)&deg;: 2(3x + 5) + (4x &minus; 10) = 180 &rarr; 10x = 180 &rarr; <b>x = 18</b> (59&deg;, 59&deg;, 62&deg;).</div>
+    <div class="box wo"><span class="lbl">Watch out</span>
+      SSA is ambiguous and AAA gives only similarity. A midsegment is half the third side — read carefully which one you're given.</div>`},
+
+ {name:"Similarity, Right Triangles &amp; Trigonometry",
+  key:"Similarity gives proportions and squares the ratio for area. In right triangles, the geometric mean, the Pythagorean theorem, and the trig ratios each solve for a different missing piece.",
+  html:`
+    <p>Prove similar with <b>AA</b>, <b>SSS~</b>, or <b>SAS~</b>. Scale factor k: sides &times;k, perimeter &times;k, <b>area &times;k&sup2;</b>, volume &times;k&sup3;. Going from the <b>larger</b> to the smaller, multiply by the reciprocal squared.</p>
+    <p><b>Side-splitter:</b> a line parallel to one side divides the other two proportionally.</p>
+    <span class="fx">altitude = &radic;(p · q)      leg = &radic;(adjacent piece · whole hypotenuse)</span>
+    <span class="fx">sin &theta; = opp/hyp   ·   cos &theta; = adj/hyp   ·   tan &theta; = opp/adj</span>
+    <p>If the unknown is in the <b>denominator</b>, divide: hypotenuse = opposite &divide; sin &theta;. Angles of <b>elevation</b> and <b>depression</b> are measured from the horizontal — sketch the triangle first.</p>
+    <div class="box ex"><span class="lbl">Worked example</span>
+      A 35&deg; angle has an opposite side of 9. Then sin 35&deg; = 9/h &rarr; h = 9 &divide; sin 35&deg; &asymp; <b>15.7</b>.</div>
+    <div class="box wo"><span class="lbl">Watch out</span>
+      Area scales by <b>k&sup2;</b>, not k. Keep the calculator in <b>degree mode</b>.</div>`},
+
+ {name:"Circles, Coordinate &amp; Measurement",
+  key:"Complete the square to read a circle's center and radius, halve an arc for an inscribed angle, and classify coordinate figures using slopes and distances together.",
+  html:`
+    <span class="fx">circle: (x &minus; h)&sup2; + (y &minus; k)&sup2; = r&sup2;   center (h, k)</span>
+    <p>From general form, group x-terms and y-terms, complete the square on each, and add the same amounts to <b>both sides</b>.</p>
+    <span class="fx">arc length = (&theta;/360)(2&pi;r)   ·   inscribed angle = &frac12; arc</span>
+    <p>Opposite angles of a quadrilateral <b>inscribed in a circle</b> are supplementary.</p>
+    <p><b>Classifying:</b> equal distances alone &rarr; rhombus; add perpendicular adjacent slopes &rarr; square. Always test both.</p>
+    <div class="box ex"><span class="lbl">Worked example</span>
+      x&sup2; + y&sup2; &minus; 8x + 6y &minus; 11 = 0 &rarr; (x&minus;4)&sup2; + (y+3)&sup2; = 11 + 16 + 9 = 36 &rarr; <b>center (4, &minus;3), radius 6</b>.</div>
+    <div class="box wo"><span class="lbl">Watch out</span>
+      The signs flip when reading the center. Four equal sides does <b>not</b> prove a square.</div>`}
+];
+
+/* FINAL TEST — 55 new advanced questions. u = unit index 0-6 */
+const QS = [
+ // Unit 1 — Foundations & Constructions (11, FOCUS)
+ {u:0,q:"B lies between A and C. AB = 5x + 2, BC = 3x &minus; 6, and AC = 44. Find the length of <b>AB</b>.",type:"num",accept:["32"],
+  e:"(5x + 2) + (3x &minus; 6) = 44 &rarr; 8x &minus; 4 = 44 &rarr; x = 6. Then AB = 5(6) + 2 = 32. (x = 6 is not the final answer.)"},
+ {u:0,q:"M(1, &minus;3) is the midpoint of segment AB, and A is (&minus;5, 2). Find the coordinates of <b>B</b>.",type:"mc",
+  o:["(7, &minus;8)","(&minus;2, &minus;0.5)","(&minus;11, 7)","(6, &minus;5)"],a:0,
+  e:"Double the midpoint and subtract the known endpoint: x = 2(1) &minus; (&minus;5) = 7, y = 2(&minus;3) &minus; 2 = &minus;8 &rarr; B(7, &minus;8)."},
+ {u:0,q:"Find the point that is <b>two-fifths of the way</b> from A(&minus;4, &minus;1) to B(6, 9).",type:"mc",
+  o:["(&minus;2, 1)","(0, 3)","(1, 4)","(2, 5)"],a:1,
+  e:"x = &minus;4 + (2/5)(10) = 0 and y = &minus;1 + (2/5)(10) = 3 &rarr; (0, 3). The fraction is already given — don't convert it again."},
+ {u:0,q:"Point P partitions the directed segment from A(2, 8) to B(14, &minus;4) in the ratio <b>1:3</b>. Find P.",type:"mc",
+  o:["(4, 6)","(6, 4)","(5, 5)","(8, 2)"],a:2,
+  e:"Ratio 1:3 means 1/(1+3) = &frac14; of the way: x = 2 + &frac14;(12) = 5, y = 8 + &frac14;(&minus;12) = 5 &rarr; (5, 5)."},
+ {u:0,q:"Find the distance between (&minus;6, 3) and (2, &minus;3).",type:"num",accept:["10"],
+  e:"&radic;(8&sup2; + (&minus;6)&sup2;) = &radic;(64 + 36) = &radic;100 = 10 — a 6-8-10 right triangle."},
+ {u:0,q:"A triangle has vertices A(0, 0), B(6, 0), and C(6, 8). Find its <b>perimeter</b>.",type:"num",accept:["24"],
+  e:"AB = 6, BC = 8, and CA = &radic;(36 + 64) = 10. Perimeter = 6 + 8 + 10 = 24."},
+ {u:0,q:"Ray BD lies in the interior of &ang;ABC. If m&ang;ABD = (4x &minus; 3)&deg;, m&ang;DBC = (2x + 9)&deg;, and m&ang;ABC = 78&deg;, find <b>x</b>.",type:"num",accept:["12"],
+  e:"Angle Addition: (4x &minus; 3) + (2x + 9) = 78 &rarr; 6x + 6 = 78 &rarr; x = 12."},
+ {u:0,q:"Ray BD <b>bisects</b> &ang;ABC. If m&ang;ABC = (6x &minus; 8)&deg; and m&ang;ABD = (2x + 7)&deg;, find <b>x</b>.",type:"num",accept:["11"],
+  e:"The half equals &frac12; the whole: 2(2x + 7) = 6x &minus; 8 &rarr; 4x + 14 = 6x &minus; 8 &rarr; x = 11. (Then m&ang;ABC = 58&deg; and each half is 29&deg;.)"},
+ {u:0,q:"The midpoint of the segment joining (3, k) and (9, 5) is (6, 1). Find <b>k</b>.",type:"num",accept:["-3"],
+  e:"The y-coordinates average to 1: (k + 5)/2 = 1 &rarr; k + 5 = 2 &rarr; k = &minus;3."},
+ {u:0,q:"When <b>copying an angle</b> with a compass and straightedge, why does matching the chord width across the arc reproduce the original angle?",type:"mc",
+  o:["Because the compass measures degrees directly.","Because any two arcs of equal length are congruent angles.","Because the two rays are always parallel.","Because equal radii and an equal chord force the same angular opening."],a:3,
+  e:"With the same radius on both figures, an equal chord between the rays forces congruent triangles, so the angle openings must match."},
+ {u:0,q:"You construct the perpendicular from point P to line &#8467;. What does the constructed segment represent?",type:"mc",
+  o:["the shortest distance from P to &#8467;","the midpoint of &#8467;","a bisector of the angle at P","a segment parallel to &#8467;"],a:0,
+  e:"The perpendicular segment from a point to a line is always the shortest distance between them."},
+
+ // Unit 2 — Logic & Proofs (6)
+ {u:1,q:"What is the <b>inverse</b> of “If a polygon is a pentagon, then it has 5 sides”?",type:"mc",
+  o:["If a polygon has 5 sides, then it is a pentagon.","If a polygon is not a pentagon, then it does not have 5 sides.","If a polygon does not have 5 sides, then it is not a pentagon.","A polygon is a pentagon and has 5 sides."],a:1,
+  e:"The inverse negates both parts of the original: if not p, then not q."},
+ {u:1,q:"Which two related conditionals are always <b>logically equivalent to each other</b>?",type:"mc",
+  o:["the original and the converse","the original and the inverse","the converse and the inverse","the inverse and the contrapositive"],a:2,
+  e:"The converse and inverse are contrapositives of each other, so they always share a truth value (as do the original and its contrapositive)."},
+ {u:1,q:"In solving 2(x + 3) = 14, which property justifies rewriting the left side as <b>2x + 6</b>?",type:"mc",
+  o:["Substitution Property","Associative Property","Addition Property of Equality","Distributive Property"],a:3,
+  e:"Nothing was done to both sides — the left side was only expanded, which is the Distributive Property."},
+ {u:1,q:"Which is a <b>counterexample</b> to “If two angles are supplementary, then they form a linear pair”?",type:"mc",
+  o:["two angles measuring 100&deg; and 80&deg; drawn in separate locations","two vertical angles measuring 60&deg; each","two angles measuring 45&deg; and 45&deg;","two adjacent angles measuring 90&deg; each"],a:0,
+  e:"They are supplementary (100 + 80 = 180) but are not adjacent, so they form no linear pair — the hypothesis holds while the conclusion fails."},
+ {u:1,q:"Given “If a figure is a rhombus, then it is a parallelogram” and “If a figure is a parallelogram, then its opposite sides are parallel,” concluding “If a figure is a rhombus, then its opposite sides are parallel” uses the:",type:"mc",
+  o:["Law of Detachment","Law of Syllogism","Contrapositive","Reflexive Property"],a:1,
+  e:"Two conditionals chained end to end (p&rarr;q, q&rarr;r, so p&rarr;r) is the Law of Syllogism."},
+ {u:1,q:"To prove “if n&sup2; is even, then n is even” <b>indirectly</b>, the first step is to assume:",type:"mc",
+  o:["n&sup2; is even and n is even","n is even","n is odd","n&sup2; is odd"],a:2,
+  e:"An indirect proof assumes the opposite of the conclusion — here, that n is odd — and derives a contradiction."},
+
+ // Unit 3 — Parallel Lines & Transversals (11, FOCUS)
+ {u:2,q:"Parallel lines are cut by a transversal. Alternate interior angles measure (5x &minus; 17)&deg; and (3x + 9)&deg;. Find <b>x</b>.",type:"num",accept:["13"],
+  e:"Alternate interior angles are congruent: 5x &minus; 17 = 3x + 9 &rarr; 2x = 26 &rarr; x = 13."},
+ {u:2,q:"On parallel lines, same-side interior angles measure (4x + 20)&deg; and (6x)&deg;. Find <b>x</b>.",type:"num",accept:["16"],
+  e:"Same-side interior angles are supplementary: (4x + 20) + 6x = 180 &rarr; 10x = 160 &rarr; x = 16."},
+ {u:2,q:"On parallel lines, corresponding angles measure (7x &minus; 12)&deg; and (5x + 8)&deg;. Find the <b>measure of each angle</b>.",type:"num",accept:["58"],
+  e:"Corresponding angles are congruent: 7x &minus; 12 = 5x + 8 &rarr; x = 10, so each angle is 7(10) &minus; 12 = 58&deg;."},
+ {u:2,q:"On parallel lines, alternate exterior angles measure (9x &minus; 25)&deg; and (6x + 5)&deg;. Find <b>x</b>.",type:"num",accept:["10"],
+  e:"Alternate exterior angles are congruent: 9x &minus; 25 = 6x + 5 &rarr; 3x = 30 &rarr; x = 10."},
+ {u:2,q:"On parallel lines, same-side exterior angles measure (3x + 22)&deg; and (2x + 8)&deg;. Find <b>x</b>.",type:"num",accept:["30"],
+  e:"Same-side exterior angles are supplementary: (3x + 22) + (2x + 8) = 180 &rarr; 5x + 30 = 180 &rarr; x = 30."},
+ {u:2,q:"Parallel lines are cut by a transversal and m&ang;1 = 63&deg;. Find the measure of the angle that is <b>same-side interior</b> to &ang;1.",type:"num",accept:["117"],
+  e:"Same-side interior angles are supplementary, so the partner is 180 &minus; 63 = 117&deg; (not 63&deg;)."},
+ {u:2,q:"Find the slope of a line <b>parallel</b> to 2x + 5y = 15.",type:"mc",
+  o:["5/2","&minus;5/2","2/5","&minus;2/5"],a:3,
+  e:"Solve for y: 5y = &minus;2x + 15 &rarr; y = (&minus;2/5)x + 3. Parallel lines share the slope &minus;2/5."},
+ {u:2,q:"Find the slope of a line <b>perpendicular</b> to the line through (2, &minus;5) and (&minus;4, 7).",type:"mc",
+  o:["&frac12;","&minus;&frac12;","&minus;2","2"],a:0,
+  e:"Slope = (7 &minus; (&minus;5))/(&minus;4 &minus; 2) = 12/(&minus;6) = &minus;2. The negative reciprocal is &frac12;."},
+ {u:2,q:"Write the equation of the line through (&minus;3, 4) that is <b>perpendicular</b> to y = &#8531;x &minus; 2.",type:"mc",
+  o:["y = 3x + 13","y = &minus;3x &minus; 5","y = &minus;3x + 13","y = &#8531;x + 5"],a:1,
+  e:"Perpendicular slope = &minus;3. Then 4 = &minus;3(&minus;3) + b &rarr; 4 = 9 + b &rarr; b = &minus;5, giving y = &minus;3x &minus; 5."},
+ {u:2,q:"How are the lines y = &minus;4x + 7 and x &minus; 4y = 8 related?",type:"mc",
+  o:["neither","parallel","perpendicular","the same line"],a:2,
+  e:"The second becomes y = &frac14;x &minus; 2. Since (&minus;4)(&frac14;) = &minus;1, the lines are perpendicular."},
+ {u:2,q:"A transversal makes same-side interior angles that are supplementary. Which theorem lets you conclude the lines <b>are parallel</b>?",type:"mc",
+  o:["Alternate Interior Angles Theorem","Corresponding Angles Postulate","Same-Side Interior Angles Theorem","Converse of the Same-Side Interior Angles Theorem"],a:3,
+  e:"Reasoning from the angles <i>to</i> parallel lines is always the converse; the original theorem starts from parallel lines."},
+
+ // Unit 4 — Transformations (11, FOCUS)
+ {u:3,q:"Reflect (&minus;2, 5) over the <b>y-axis</b>, then rotate the image <b>180&deg;</b> about the origin. Find the final point.",type:"mc",
+  o:["(&minus;2, &minus;5)","(2, &minus;5)","(2, 5)","(5, &minus;2)"],a:0,
+  e:"Reflect over the y-axis: (&minus;2, 5) &rarr; (2, 5). Rotate 180&deg;: (2, 5) &rarr; (&minus;2, &minus;5)."},
+ {u:3,q:"Rotate (6, &minus;3) <b>270&deg; counterclockwise</b> about the origin, then apply (x, y) &rarr; (x + 2, y &minus; 4).",type:"mc",
+  o:["(&minus;1, &minus;2)","(&minus;1, &minus;10)","(&minus;5, &minus;10)","(1, &minus;10)"],a:1,
+  e:"270&deg; CCW is (x, y) &rarr; (y, &minus;x): (6, &minus;3) &rarr; (&minus;3, &minus;6). Translate: (&minus;3 + 2, &minus;6 &minus; 4) = (&minus;1, &minus;10)."},
+ {u:3,q:"Reflect (1, &minus;4) over the line <b>y = x</b>, then reflect the image over the <b>x-axis</b>.",type:"mc",
+  o:["(4, 1)","(&minus;1, 4)","(&minus;4, &minus;1)","(&minus;4, 1)"],a:2,
+  e:"Over y = x (swap): (1, &minus;4) &rarr; (&minus;4, 1). Over the x-axis: (&minus;4, 1) &rarr; (&minus;4, &minus;1)."},
+ {u:3,q:"Dilate (&minus;8, 12) by a scale factor of <b>&frac14;</b> centered at the origin.",type:"mc",
+  o:["(&minus;32, 48)","(&minus;4, 6)","(2, &minus;3)","(&minus;2, 3)"],a:3,
+  e:"Multiply both coordinates by &frac14;: (&minus;8 &middot; &frac14;, 12 &middot; &frac14;) = (&minus;2, 3)."},
+ {u:3,q:"Dilate B(5, &minus;2) by a scale factor of <b>2</b> centered at <b>C(1, 3)</b>.",type:"mc",
+  o:["(9, &minus;7)","(11, &minus;1)","(6, 1)","(10, &minus;4)"],a:0,
+  e:"P&prime; = C + k(P &minus; C): x = 1 + 2(5 &minus; 1) = 9, y = 3 + 2(&minus;2 &minus; 3) = &minus;7 &rarr; (9, &minus;7). The origin rule does not apply."},
+ {u:3,q:"Dilate P(6, 4) by a scale factor of <b>&frac12;</b> centered at <b>C(&minus;2, 0)</b>.",type:"mc",
+  o:["(3, 2)","(2, 2)","(4, 2)","(1, 2)"],a:1,
+  e:"x = &minus;2 + &frac12;(6 &minus; (&minus;2)) = &minus;2 + 4 = 2, y = 0 + &frac12;(4 &minus; 0) = 2 &rarr; (2, 2)."},
+ {u:3,q:"Rotating a figure <b>90&deg; clockwise</b> and then reflecting it over the <b>x-axis</b> produces the same image as which single transformation?",type:"mc",
+  o:["a translation","a reflection over the y-axis","a reflection over the line y = x","a 180&deg; rotation"],a:2,
+  e:"90&deg; CW gives (x, y) &rarr; (y, &minus;x); reflecting over the x-axis then gives (y, x) — exactly the rule for reflecting over y = x."},
+ {u:3,q:"A transformation maps (2, 5) &rarr; (5, 2) and (&minus;1, 3) &rarr; (3, &minus;1). Which transformation is it?",type:"mc",
+  o:["reflection over the y-axis","rotation 90&deg; counterclockwise","rotation 180&deg; about the origin","reflection over the line y = x"],a:3,
+  e:"Both points have their coordinates swapped, which is the rule (x, y) &rarr; (y, x) — a reflection over y = x."},
+ {u:3,q:"A transformation maps A(3, 1) &rarr; A&prime;(6, 2) and B(&minus;2, 4) &rarr; B&prime;(&minus;4, 8). Which transformation is it?",type:"mc",
+  o:["a dilation by a scale factor of 2 centered at the origin","a rotation of 180&deg;","a reflection over y = x","a translation by (3, 1)"],a:0,
+  e:"Every coordinate is multiplied by the same factor 2 (6/3 = 2, 2/1 = 2, &minus;4/&minus;2 = 2, 8/4 = 2), so it is a dilation with k = 2 about the origin."},
+ {u:3,q:"A figure is rotated 180&deg; about the origin, and the image is then rotated 180&deg; about the origin again. The final image is:",type:"mc",
+  o:["a reflection of the original","identical to the original figure","rotated 90&deg; from the original","a dilation of the original"],a:1,
+  e:"(x, y) &rarr; (&minus;x, &minus;y) &rarr; (x, y). Two 180&deg; rotations return every point to its starting place — the identity."},
+ {u:3,q:"A figure is dilated by a scale factor of 3 and then rotated 90&deg;. The image and the original are:",type:"mc",
+  o:["congruent only if the center of dilation is the origin","congruent, because a rotation is a rigid motion","similar but not congruent, because the dilation changed the size","neither similar nor congruent"],a:2,
+  e:"The rotation preserves size, but the dilation by 3 does not, so the figures have the same shape at a different size — similar, not congruent."},
+
+ // Unit 5 — Triangles & Congruence (7)
+ {u:4,q:"A triangle has angles (3x &minus; 8)&deg;, (2x + 13)&deg;, and (x + 7)&deg;. Find <b>x</b>.",type:"num",accept:["28"],
+  e:"The angles total 180&deg;: 6x + 12 = 180 &rarr; 6x = 168 &rarr; x = 28. (The angles are 76&deg;, 69&deg;, and 35&deg;.)"},
+ {u:4,q:"An exterior angle measures (7x + 5)&deg; and its remote interior angles measure (3x + 20)&deg; and (2x + 15)&deg;. Find <b>x</b>.",type:"num",accept:["15"],
+  e:"Exterior Angle Theorem: 7x + 5 = (3x + 20) + (2x + 15) &rarr; 7x + 5 = 5x + 35 &rarr; x = 15."},
+ {u:4,q:"An isosceles triangle has base angles of (3x + 5)&deg; each and a vertex angle of (4x &minus; 10)&deg;. Find <b>x</b>.",type:"num",accept:["18"],
+  e:"2(3x + 5) + (4x &minus; 10) = 180 &rarr; 10x = 180 &rarr; x = 18, giving 59&deg;, 59&deg;, and 62&deg;."},
+ {u:4,q:"Two sides of a triangle measure 9 and 4. The third side x must satisfy:",type:"mc",
+  o:["0 &lt; x &lt; 13","9 &lt; x &lt; 13","4 &lt; x &lt; 9","5 &lt; x &lt; 13"],a:3,
+  e:"|9 &minus; 4| &lt; x &lt; 9 + 4, so 5 &lt; x &lt; 13."},
+ {u:4,q:"Three lengths are proposed as the sides of a triangle. Which set <b>fails</b> the Triangle Inequality?",type:"mc",
+  o:["3, 6, 9","6, 10, 14","5, 7, 11","8, 8, 15"],a:0,
+  e:"3 + 6 = 9, which is not <i>greater</i> than 9, so those lengths collapse into a straight line rather than closing into a triangle."},
+ {u:4,q:"You know two triangles are right triangles with congruent hypotenuses. What else is needed for <b>HL</b>?",type:"mc",
+  o:["nothing more is needed","one pair of congruent legs","one pair of congruent acute angles","both pairs of congruent acute angles"],a:1,
+  e:"HL requires the hypotenuse <i>and</i> one leg: with the right angles and congruent hypotenuses given, one congruent pair of legs completes it."},
+ {u:4,q:"A midsegment of a triangle measures 7.5. Find the length of the <b>third side</b> it is parallel to.",type:"num",accept:["15"],
+  e:"A midsegment is half the third side, so the third side is 2(7.5) = 15. (Here you double rather than halve.)"},
+
+ // Unit 6 — Similarity, Right Triangles & Trigonometry (6)
+ {u:5,q:"&#9651;ABC ~ &#9651;XYZ with AB = 8, XY = 12, AC = x &minus; 1, and XZ = 15. Find <b>x</b>.",type:"num",accept:["11"],
+  e:"8/12 = (x &minus; 1)/15 &rarr; 2/3 = (x &minus; 1)/15 &rarr; x &minus; 1 = 10 &rarr; x = 11."},
+ {u:5,q:"The altitude to the hypotenuse divides it into segments of 3 and 27. Find the <b>altitude</b>.",type:"num",accept:["9"],
+  e:"The altitude is the geometric mean: &radic;(3 &middot; 27) = &radic;81 = 9."},
+ {u:5,q:"Two similar polygons have a scale factor of 2:7. The <b>larger</b> has an area of 196 square units. Find the area of the <b>smaller</b>.",type:"num",accept:["16"],
+  e:"Area scales by the square of the ratio: 196 &times; (2/7)&sup2; = 196 &times; 4/49 = 16 square units."},
+ {u:5,q:"In &#9651;ABC, DE &#8741; BC with AD = 9, DB = x, AE = 12, and EC = 8. Find <b>x</b>.",type:"num",accept:["6"],
+  e:"Side-splitter: AD/DB = AE/EC &rarr; 9/x = 12/8 &rarr; 12x = 72 &rarr; x = 6."},
+ {u:5,q:"A right triangle has a 35&deg; angle whose <b>opposite</b> side measures 9. Find the <b>hypotenuse</b> to the nearest tenth.",type:"num",accept:["15.7","15.69"],
+  e:"sin 35&deg; = 9/h &rarr; h = 9 &divide; sin 35&deg; &asymp; 9 &divide; 0.5736 &asymp; 15.7. The unknown is in the denominator, so divide."},
+ {u:5,q:"From a point 40 ft from the base of a building, the angle of elevation to the top is 63&deg;. Find the <b>height</b> to the nearest tenth.",type:"num",accept:["78.5","78.50"],
+  e:"The height is opposite and 40 ft is adjacent: tan 63&deg; = h/40 &rarr; h = 40 &middot; tan 63&deg; &asymp; 78.5 ft."},
+
+ // Unit 7 — Circles, Coordinate & Measurement (3)
+ {u:6,q:"Find the <b>center and radius</b> of x&sup2; + y&sup2; &minus; 8x + 6y &minus; 11 = 0.",type:"mc",
+  o:["center (8, &minus;6), radius 6","center (&minus;4, 3), radius 6","center (4, &minus;3), radius 6","center (4, &minus;3), radius 36"],a:2,
+  e:"Complete the square: (x&sup2;&minus;8x+16) + (y&sup2;+6y+9) = 11 + 16 + 9 &rarr; (x&minus;4)&sup2; + (y+3)&sup2; = 36 &rarr; center (4, &minus;3), radius 6."},
+ {u:6,q:"An inscribed angle intercepts an arc measuring 84&deg;. Find the measure of the <b>inscribed angle</b>.",type:"num",accept:["42"],
+  e:"An inscribed angle is half its intercepted arc: &frac12;(84&deg;) = 42&deg;."},
+ {u:6,q:"Quadrilateral ABCD has vertices A(&minus;2, 1), B(2, 4), C(6, 1), and D(2, &minus;2). Classify it as precisely as possible.",type:"mc",
+  o:["rectangle","trapezoid only","square","rhombus"],a:3,
+  e:"All four sides measure 5, so it is a rhombus. But slope AB = 3/4 and slope BC = &minus;3/4, and (3/4)(&minus;3/4) &ne; &minus;1, so the adjacent sides are not perpendicular — it is not a square."}
+];
+const TOTAL = QS.length;
+const DURATION = 90*60*1000;
+const PASS = 80;
+const isFocus = u => FOCUS.includes(u);
+
+/* ==================== STATE ==================== */
+const KEY="geo-cbe-test1-v1";
+let MODE="guide";
+let S = load();
+function fresh(){ return {phase:"checkin",start:null,answers:{},flags:{},cur:0,integrity:0,submittedAt:null,usedMs:0}; }
+function load(){ try{const r=localStorage.getItem(KEY); if(r) return JSON.parse(r);}catch(e){} return fresh(); }
+function save(){ try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} }
+
+const app=document.getElementById("app"), proctor=document.getElementById("proctor"), apphead=document.getElementById("apphead");
+
+/* ==================== HELPERS ==================== */
+function norm(s){ return String(s).trim().toLowerCase().replace(/[−–—]/g,"-").replace(/\s+/g,"").replace(/°/g,"").replace(/units?$/,"").replace(/ft$/,"").replace(/degrees?$/,""); }
+function isCorrect(i){ const v=S.answers[i]; if(v===undefined||v===null||v==="") return false; const q=QS[i]; return q.type==="mc"? v===q.a : q.accept.some(a=>norm(a)===norm(v)); }
+function answeredCount(){ return Object.keys(S.answers).filter(i=>S.answers[i]!==undefined&&S.answers[i]!=="").length; }
+function fmt(ms){ ms=Math.max(0,ms); const s=Math.round(ms/1000); return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); }
+function remaining(){ if(!S.start) return DURATION; return S.start+DURATION-Date.now(); }
+const stripTags = s => s.replace(/<[^>]+>/g,"").replace(/&amp;/g,"&");
+
+/* ==================== TIMER ==================== */
+let tick=null;
+function startTimer(){ stopTimer(); tick=setInterval(()=>{ const rem=remaining(), el=document.getElementById("timer");
+  if(el){ el.textContent=fmt(rem); el.classList.toggle("warn",rem<=5*60*1000&&rem>60*1000); el.classList.toggle("crit",rem<=60*1000);} 
+  if(rem<=0){ stopTimer(); autoSubmit(); } },500); }
+function stopTimer(){ if(tick){clearInterval(tick);tick=null;} }
+
+/* ==================== INTEGRITY ==================== */
+let blurLock=false;
+function onLeave(){ if(!(MODE==="test"&&(S.phase==="exam"||S.phase==="review"))) return;
+  if(blurLock) return; blurLock=true; setTimeout(()=>blurLock=false,900);
+  S.integrity++; save(); paintIntegrity();
+  showModal(`<div class="modal warn"><h3>You left the exam window</h3><p>In a real proctored exam, switching tabs or leaving the window is recorded as a possible integrity event. This is flag <b>#${S.integrity}</b> in this attempt.</p><div class="row"><button class="mbtn solid" data-close>Back to exam</button></div></div>`); }
+document.addEventListener("visibilitychange",()=>{ if(document.hidden) onLeave(); });
+window.addEventListener("blur",onLeave);
+function paintIntegrity(){ const d=document.getElementById("idot"),t=document.getElementById("itxt"); if(!d) return;
+  if(S.integrity>0){ d.classList.add("flag"); t.textContent=`${S.integrity} flag${S.integrity>1?"s":""}`; } else { d.classList.remove("flag"); t.textContent="Focused"; } }
+
+/* ==================== OVERLAY ==================== */
+const overlay=document.getElementById("overlay"), oInner=document.getElementById("overlay-inner");
+function showModal(html){ oInner.innerHTML=html; overlay.hidden=false; oInner.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",closeModal)); }
+function closeModal(){ overlay.hidden=true; oInner.innerHTML=""; }
+overlay.addEventListener("click",e=>{ if(e.target===overlay) closeModal(); });
+
+/* ==================== TOP RENDER ==================== */
+function render(){
+  const examMode = MODE==="test" && (S.phase==="exam"||S.phase==="review");
+  proctor.hidden = !examMode;
+  apphead.hidden = examMode;
+  app.className = examMode ? "stage exam-pad" : "stage";
+  document.querySelectorAll(".apptab").forEach(t=>t.setAttribute("aria-selected", String(t.dataset.mode===MODE)));
+  if(MODE==="guide"){ renderGuide(); stopTimer(); }
+  else {
+    if(S.phase==="checkin") renderCheckin();
+    else if(S.phase==="exam") renderExam();
+    else if(S.phase==="review") renderReview();
+    else if(S.phase==="results") renderResults();
+  }
+  if(examMode){ paintProctor(); paintIntegrity(); }
+}
+function paintProctor(){ const t=document.getElementById("timer"); if(t) t.textContent=fmt(remaining());
+  const p=document.getElementById("prog"); if(p) p.textContent=`${answeredCount()} / ${TOTAL} answered`; }
+
+document.querySelectorAll(".apptab").forEach(t=>t.addEventListener("click",()=>{ MODE=t.dataset.mode; render(); window.scrollTo(0,0); }));
+
+/* ==================== STUDY GUIDE ==================== */
+function renderGuide(){
+  app.innerHTML=`
+    <p class="note">A study guide for all ${UNITS.length} TEKS units, plus a ${TOTAL}-question timed final test (see the <b>Final Test</b> tab). Your three focus areas for this round are marked and pulled out below.</p>
+    <div class="focus-callout">
+      <h3>★ Your focus areas for this test</h3>
+      <div class="chips">${FOCUS.map(i=>`<button class="fchip" data-jump="${i}">${stripTags(UNITS[i].name)}</button>`).join("")}</div>
+      <p>These units carry the most weight on the final test (${QS.filter(q=>isFocus(q.u)).length} of ${TOTAL} questions). Start here.</p>
+    </div>
+    <div id="units">${UNITS.map((u,i)=>`
+      <article class="unit ${isFocus(i)?"focus":""}" id="unit-${i}" data-open="0">
+        <button class="unit-head" aria-expanded="false" data-u="${i}">
+          <span class="unum">${i+1}</span>
+          <span class="uname">${u.name}</span>
+          ${isFocus(i)?`<span class="focus-badge">Focus</span>`:""}
+          <svg class="chev" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3 L9 7 L5 11" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        <div class="unit-body" id="ubody-${i}" hidden>
+          <div class="kidea"><b>Key idea.</b> ${u.key}</div>
+          ${u.html}
+        </div>
+      </article>`).join("")}</div>`;
+  app.querySelectorAll(".unit-head").forEach(b=>b.addEventListener("click",()=>toggleUnit(+b.dataset.u)));
+  app.querySelectorAll(".fchip").forEach(c=>c.addEventListener("click",()=>{ const i=+c.dataset.jump; openUnit(i); document.getElementById("unit-"+i).scrollIntoView({behavior:"smooth",block:"start"}); }));
+}
+function toggleUnit(i){ const body=document.getElementById("ubody-"+i), art=document.getElementById("unit-"+i), head=art.querySelector(".unit-head");
+  const open=!body.hidden; body.hidden=open; head.setAttribute("aria-expanded",String(!open)); art.setAttribute("data-open",open?"0":"1"); }
+function openUnit(i){ const body=document.getElementById("ubody-"+i), art=document.getElementById("unit-"+i);
+  if(body && body.hidden){ body.hidden=false; art.setAttribute("data-open","1"); art.querySelector(".unit-head").setAttribute("aria-expanded","true"); } }
+
+/* ==================== CHECK-IN ==================== */
+function renderCheckin(){
+  stopTimer();
+  const canResume = S.start && !S.submittedAt && remaining()>0;
+  app.innerHTML=`
+    <div class="checkin">
+      <span class="eyebrow">Credit by Exam · Geometry · Final Test</span>
+      <h1>${TOTAL} questions. ${Math.round(DURATION/60000)} minutes.<br><em>Proctored conditions.</em></h1>
+      <p class="lede">An all-new set of questions at the same difficulty as your last attempt — multi-step algebra, compositions, and reasoning rather than recall — now weighted toward <b>Foundations &amp; Constructions</b>, <b>Parallel Lines &amp; Transversals</b>, and <b>Transformations</b>. No feedback until you submit; a scored report at the end.</p>
+      <div class="facts">
+        <div class="fact"><b>${TOTAL}</b><span>Questions</span></div>
+        <div class="fact"><b>${fmt(DURATION)}</b><span>Time limit</span></div>
+        <div class="fact"><b>${PASS}%</b><span>To pass</span></div>
+        <div class="fact"><b>${UNITS.length}</b><span>Units</span></div>
+      </div>
+      <div class="rules">
+        <h3>Exam conditions</h3>
+        <ul>
+          <li>The clock starts when you begin and does not pause. At 0:00 the exam submits automatically.</li>
+          <li>You will not see whether an answer is right until you submit. You can change answers and flag questions to revisit.</li>
+          <li>Use scratch paper and a calculator. Do not use notes, the study guide, or outside help.</li>
+          <li>Leaving the exam window (switching tabs or apps) is logged, just as a proctor would flag it.</li>
+        </ul>
+      </div>
+      <p class="disclaim"><b>About the monitoring:</b> this practice exam runs entirely in your browser. Nothing is recorded or sent anywhere — the focus light just helps you practice staying in the window. Progress is saved locally so a refresh won't lose it.</p>
+      <label class="ack"><input type="checkbox" id="ack"><span>I understand the conditions and will take this test without notes or outside help.</span></label>
+      <button class="begin" id="begin" disabled>Begin test</button>
+      ${canResume?`<div class="resume"><button id="resume">Resume attempt in progress (${fmt(remaining())} left)</button></div>`:""}
+    </div>`;
+  const ack=document.getElementById("ack"), begin=document.getElementById("begin");
+  ack.addEventListener("change",()=>begin.disabled=!ack.checked);
+  begin.addEventListener("click",()=>{ S=fresh(); S.phase="exam"; S.start=Date.now(); save(); startTimer(); render(); window.scrollTo(0,0); });
+  const r=document.getElementById("resume"); if(r) r.addEventListener("click",()=>{ S.phase="exam"; save(); startTimer(); render(); });
+}
+
+/* ==================== EXAM ==================== */
+let navOpen=false;
+function renderExam(){
+  if(!tick) startTimer();
+  if(remaining()<=0){ autoSubmit(); return; }
+  const i=S.cur, q=QS[i], foc=isFocus(q.u);
+  const body = q.type==="mc"
+    ? `<div class="opts" role="radiogroup">${q.o.map((o,k)=>`<button class="opt ${S.answers[i]===k?"sel":""}" role="radio" aria-checked="${S.answers[i]===k}" data-k="${k}"><span class="k">${"ABCD"[k]}</span><span>${o}</span></button>`).join("")}</div>`
+    : `<div class="entry"><label for="ans">Your answer</label><input type="text" id="ans" autocomplete="off" value="${S.answers[i]!==undefined?String(S.answers[i]).replace(/"/g,'&quot;'):""}" placeholder="Type a number or expression"><p class="hint">Numbers where asked (e.g. 15, −3, 90). Leave π and radicals as words if needed.</p></div>`;
+  app.innerHTML=`
+    <div class="exam-grid">
+      <section class="qcard">
+        <div class="qhead">
+          <span class="n">Question ${i+1} of ${TOTAL}</span>
+          <span class="u ${foc?"focus":""}">Unit ${q.u+1} · ${stripTags(UNITS[q.u].name)}${foc?" ★":""}</span>
+          <button class="flagbtn ${S.flags[i]?"on":""}" id="flag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21V4h11l-1.5 4L16 12H5"/></svg>${S.flags[i]?"Flagged":"Flag"}</button>
+        </div>
+        <div class="qtext">${q.q}</div>
+        ${body}
+        <div class="qnav-btns">
+          <button class="navb" id="prev" ${i===0?"disabled":""}>← Previous</button>
+          ${i===TOTAL-1?`<button class="navb primary" id="toReview2">Review &amp; submit →</button>`:`<button class="navb primary" id="next">Next →</button>`}
+        </div>
+      </section>
+      <aside class="navigator ${navOpen?"open":""}" id="navigator">
+        <button class="navtoggle" id="navtoggle">Question navigator <span>${answeredCount()}/${TOTAL}</span></button>
+        <h4>Questions</h4>
+        <div class="grid" id="grid"></div>
+        <div class="legend"><div><span class="sw a"></span> Answered</div><div><span class="sw"></span> Not answered</div><div><span class="sw f"></span> Flagged</div></div>
+      </aside>
+    </div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{ const k=+b.dataset.k;
+    S.answers[i]=(S.answers[i]===k)?undefined:k; if(S.answers[i]===undefined) delete S.answers[i]; save(); renderExam(); paintProctor(); }));
+  const inp=document.getElementById("ans");
+  if(inp){ inp.addEventListener("input",()=>{ if(inp.value.trim()==="") delete S.answers[i]; else S.answers[i]=inp.value; save(); paintProctor(); paintGrid(); });
+    inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); goNext(); }}); }
+  document.getElementById("flag").addEventListener("click",()=>{ if(S.flags[i]) delete S.flags[i]; else S.flags[i]=true; save(); renderExam(); });
+  document.getElementById("prev")?.addEventListener("click",()=>{ S.cur=Math.max(0,i-1); save(); renderExam(); });
+  document.getElementById("next")?.addEventListener("click",goNext);
+  document.getElementById("toReview2")?.addEventListener("click",()=>{ S.phase="review"; save(); render(); window.scrollTo(0,0); });
+  document.getElementById("navtoggle").addEventListener("click",()=>{ navOpen=!navOpen; document.getElementById("navigator").classList.toggle("open",navOpen); });
+  buildGrid(); paintProctor();
+}
+function goNext(){ S.cur=Math.min(TOTAL-1,S.cur+1); save(); renderExam(); }
+function buildGrid(){ const g=document.getElementById("grid"); if(!g) return;
+  g.innerHTML=QS.map((_,j)=>`<button class="gcell" data-j="${j}">${j+1}</button>`).join("");
+  g.querySelectorAll(".gcell").forEach(c=>c.addEventListener("click",()=>{ S.cur=+c.dataset.j; save(); renderExam(); })); paintGrid(); }
+function paintGrid(){ const g=document.getElementById("grid"); if(!g) return;
+  g.querySelectorAll(".gcell").forEach(c=>{ const j=+c.dataset.j;
+    c.classList.toggle("answered", S.answers[j]!==undefined&&S.answers[j]!=="");
+    c.classList.toggle("flagged", !!S.flags[j]); c.classList.toggle("current", j===S.cur); }); }
+document.addEventListener("keydown",e=>{ if(!(MODE==="test"&&S.phase==="exam")) return;
+  const typing=document.activeElement && document.activeElement.tagName==="INPUT";
+  if(e.key==="ArrowRight"&&!typing) goNext();
+  else if(e.key==="ArrowLeft"&&!typing){ S.cur=Math.max(0,S.cur-1); save(); renderExam(); }
+  else if(!typing && QS[S.cur].type==="mc" && /^[1-4]$/.test(e.key)){ const k=+e.key-1; S.answers[S.cur]=S.answers[S.cur]===k?undefined:k; if(S.answers[S.cur]===undefined) delete S.answers[S.cur]; save(); renderExam(); }
+  else if(!typing && QS[S.cur].type==="mc" && /^[a-dA-D]$/.test(e.key)){ const k="abcd".indexOf(e.key.toLowerCase()); S.answers[S.cur]=S.answers[S.cur]===k?undefined:k; if(S.answers[S.cur]===undefined) delete S.answers[S.cur]; save(); renderExam(); }
+  else if(!typing && e.key.toLowerCase()==="f"){ if(S.flags[S.cur]) delete S.flags[S.cur]; else S.flags[S.cur]=true; save(); renderExam(); } });
+
+/* ==================== REVIEW ==================== */
+document.getElementById("toReview").addEventListener("click",()=>{ if(MODE==="test"&&S.phase==="exam"){ S.phase="review"; save(); render(); window.scrollTo(0,0);} });
+function renderReview(){
+  const answered=answeredCount(), unanswered=TOTAL-answered;
+  const flagged=Object.keys(S.flags).map(Number).sort((a,b)=>a-b);
+  const blanks=QS.map((_,i)=>i).filter(i=>S.answers[i]===undefined||S.answers[i]==="");
+  app.innerHTML=`
+    <div class="rev">
+      <h2>Review before you submit</h2>
+      <p class="sub">The clock is still running (${fmt(remaining())} left). Jump back to anything below, or submit to see your score.</p>
+      <div class="tallies">
+        <div class="tally"><b>${answered}</b><span>Answered</span></div>
+        <div class="tally ${unanswered?"warn":""}"><b>${unanswered}</b><span>Unanswered</span></div>
+        <div class="tally"><b>${flagged.length}</b><span>Flagged</span></div>
+      </div>
+      <div class="jumplist">
+        <div class="jl-h">Flagged for review</div>
+        ${flagged.length?`<div class="jchips">${flagged.map(i=>`<button class="jchip flag" data-j="${i}">Q${i+1}</button>`).join("")}</div>`:`<p class="none">Nothing flagged.</p>`}
+        <div class="jl-h">Unanswered</div>
+        ${blanks.length?`<div class="jchips">${blanks.map(i=>`<button class="jchip" data-j="${i}">Q${i+1}</button>`).join("")}</div>`:`<p class="none">Every question has an answer.</p>`}
+      </div>
+      <div class="rev-actions">
+        <button class="navb" id="backToExam">← Return to test</button>
+        <button class="navb primary" id="submit">Submit test</button>
+      </div>
+    </div>`;
+  app.querySelectorAll(".jchip").forEach(c=>c.addEventListener("click",()=>{ S.cur=+c.dataset.j; S.phase="exam"; save(); render(); window.scrollTo(0,0); }));
+  document.getElementById("backToExam").addEventListener("click",()=>{ S.phase="exam"; save(); render(); });
+  document.getElementById("submit").addEventListener("click",confirmSubmit);
+  paintProctor();
+}
+function confirmSubmit(){ const unanswered=TOTAL-answeredCount();
+  showModal(`<div class="modal"><h3>Submit your test?</h3><p>${unanswered?`You have <b>${unanswered}</b> unanswered question${unanswered>1?"s":""}. `:""}Answers lock and are scored. You can't return to the test.</p><div class="row"><button class="mbtn" data-close>Keep working</button><button class="mbtn solid" id="reallySubmit">Submit &amp; score</button></div></div>`);
+  document.getElementById("reallySubmit").addEventListener("click",()=>{ closeModal(); doSubmit(); }); }
+function autoSubmit(){ if(S.phase==="results"||S.submittedAt) return; doSubmit(true); }
+function doSubmit(timedOut){ S.usedMs=S.start?Math.min(DURATION,Date.now()-S.start):0; S.submittedAt=Date.now(); S.phase="results"; save(); stopTimer();
+  if(timedOut){ showModal(`<div class="modal warn"><h3>Time's up</h3><p>The ${Math.round(DURATION/60000)}-minute limit was reached, so the test was submitted automatically.</p><div class="row"><button class="mbtn solid" data-close>See results</button></div></div>`); }
+  render(); window.scrollTo(0,0); }
+
+/* ==================== RESULTS ==================== */
+let reviewFilter="all";
+function renderResults(){
+  proctor.hidden=true; apphead.hidden=false; stopTimer();
+  document.querySelectorAll(".apptab").forEach(t=>t.setAttribute("aria-selected", String(t.dataset.mode==="test")));
+  const correct=QS.reduce((n,_,i)=>n+(isCorrect(i)?1:0),0);
+  const pct=Math.round(correct/TOTAL*100), passed=pct>=PASS;
+  const C=2*Math.PI*66, off=C*(1-pct/100), ringColor=passed?"var(--green)":"var(--crimson)";
+  const units=UNITS.map((u,ui)=>{ const idx=QS.map((q,i)=>[q,i]).filter(([q])=>q.u===ui).map(([,i])=>i);
+    const c=idx.filter(isCorrect).length; return {name:u.name,c,total:idx.length,pct:idx.length?c/idx.length:0,focus:isFocus(ui)}; });
+  const usedMin=Math.floor(S.usedMs/60000), usedSec=Math.round((S.usedMs%60000)/1000);
+  // focus performance summary
+  const focusRows=units.filter(u=>u.focus);
+  const focusCorrect=focusRows.reduce((n,u)=>n+u.c,0), focusTotal=focusRows.reduce((n,u)=>n+u.total,0);
+
+  app.innerHTML=`
+    <div class="scorehero">
+      <div class="ring"><svg width="150" height="150"><circle cx="75" cy="75" r="66" fill="none" stroke="var(--surface)" stroke-width="13"/><circle cx="75" cy="75" r="66" fill="none" stroke="${ringColor}" stroke-width="13" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}"/></svg><div class="pct"><b>${pct}%</b><span>${correct} / ${TOTAL}</span></div></div>
+      <div>
+        <div class="verdict-big ${passed?"pass":"fail"}">${passed?"Passed":"Not yet"}</div>
+        <p class="verdict-sub">${passed?`You scored at or above the ${PASS}% mark. Review misses below to lock it in.`:`You needed ${PASS}% (${Math.ceil(PASS/100*TOTAL)} of ${TOTAL}) to pass. The breakdown shows where to focus next.`}</p>
+        <div class="meta">
+          <div><b>${focusCorrect}/${focusTotal}</b>on focus areas</div>
+          <div><b>${usedMin}m ${usedSec}s</b>time used</div>
+          <div><b>${TOTAL-answeredCount()}</b>left blank</div>
+          <div><b>${S.integrity}</b>focus flag${S.integrity===1?"":"s"}</div>
+        </div>
+      </div>
+    </div>
+    <div class="breakdown">
+      <h3>Score by unit</h3>
+      <p class="bd-sub">★ marks your focus areas. The shortest bars are where to study next.</p>
+      ${units.map(u=>{ const weak=u.pct<0.8, cls=weak?(u.focus?"weak":"weak"):"strong";
+        return `<div class="bd-row"><div class="name">${u.focus?'<span class="fdot"></span>':''}${u.name}</div><div class="bd-track"><div class="bd-fill ${u.pct>=0.8?"strong":(u.focus?"weak":"")}" style="width:${Math.max(4,u.pct*100)}%"></div></div><div class="frac">${u.c}/${u.total}</div></div>`; }).join("")}
+    </div>
+    <div class="res-actions">
+      <button class="navb primary" id="retake">Retake test</button>
+      <button class="navb" id="goGuide">Open study guide</button>
+      <button class="navb" id="scrollReview">Review answers ↓</button>
+    </div>
+    <div class="review-head">
+      <h3>Answer review</h3>
+      <div class="rfilter">
+        <button class="rchip" data-f="all" aria-pressed="true">All ${TOTAL}</button>
+        <button class="rchip" data-f="wrong" aria-pressed="false">Missed only</button>
+        <button class="rchip" data-f="focus" aria-pressed="false">Focus areas</button>
+      </div>
+    </div>
+    <div id="reviewList"></div>
+    <p class="footnote">Geometry CBE Test 1 · TEKS units 1–7 · progress stored in this browser only</p>`;
+  document.getElementById("retake").addEventListener("click",()=>{
+    showModal(`<div class="modal"><h3>Retake the test?</h3><p>This clears your answers and restarts the clock at ${fmt(DURATION)}.</p><div class="row"><button class="mbtn" data-close>Cancel</button><button class="mbtn danger" id="cRetake">Restart test</button></div></div>`);
+    document.getElementById("cRetake").addEventListener("click",()=>{ closeModal(); S=fresh(); save(); render(); window.scrollTo(0,0); }); });
+  document.getElementById("goGuide").addEventListener("click",()=>{ MODE="guide"; render(); window.scrollTo(0,0); });
+  document.getElementById("scrollReview").addEventListener("click",()=>document.querySelector(".review-head").scrollIntoView({behavior:"smooth"}));
+  app.querySelectorAll(".rchip").forEach(c=>c.addEventListener("click",()=>{ reviewFilter=c.dataset.f;
+    app.querySelectorAll(".rchip").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.f===reviewFilter))); paintReviewList(); }));
+  paintReviewList();
+}
+function paintReviewList(){
+  const host=document.getElementById("reviewList"); if(!host) return;
+  const rows=QS.map((q,i)=>[q,i]).filter(([q,i])=> reviewFilter==="all" || (reviewFilter==="wrong"&&!isCorrect(i)) || (reviewFilter==="focus"&&isFocus(q.u)));
+  if(!rows.length){ host.innerHTML=`<p class="none" style="padding:14px">Nothing to show here — nice work.</p>`; return; }
+  host.innerHTML=rows.map(([q,i])=>{
+    const ans=S.answers[i], blank=(ans===undefined||ans===""), ok=isCorrect(i);
+    const cls=blank?"blank":(ok?"correct":"incorrect"), tag=blank?"Left blank":(ok?"Correct":"Incorrect");
+    let bodyHtml;
+    if(q.type==="mc"){ bodyHtml=`<div class="ropts">${q.o.map((o,k)=>{ let c="ropt",tick="";
+      if(k===q.a){ c+=" right"; tick=`<span class="tick">correct</span>`; }
+      if(!blank && k===ans && k!==q.a){ c+=" chosen-wrong"; tick=`<span class="tick">your answer</span>`; }
+      return `<div class="${c}"><span class="k">${"ABCD"[k]}</span><span>${o}</span>${tick}</div>`; }).join("")}</div>`; }
+    else { bodyHtml=`<div class="rnum">Your answer: <span class="yours">${blank?"—":String(ans)}</span> · Accepted: <span class="ans">${q.accept.join(" or ")}</span></div>`; }
+    return `<div class="ritem ${cls}"><div class="rtop"><span>Q${i+1} · Unit ${q.u+1} ${stripTags(UNITS[q.u].name)}${isFocus(q.u)?" ★":""}</span><span class="verdict-tag">${tag}</span></div><div class="rq">${q.q}</div>${bodyHtml}<div class="rexp"><span class="lbl">Why</span>${q.e}</div></div>`;
+  }).join("");
+}
+
+/* ==================== BOOT ==================== */
+(function boot(){
+  if(S.phase==="exam"){ if(S.submittedAt){ S.phase="results"; MODE="test"; }
+    else if(remaining()<=0){ MODE="test"; doSubmit(true); return; }
+    else { MODE="test"; startTimer(); } }
+  else if(S.phase==="review"){ MODE="test"; }
+  else if(S.phase==="results"){ /* stay on guide by default, test tab shows results */ }
+  render();
+})();
+</script>
+</body>
+</html>
